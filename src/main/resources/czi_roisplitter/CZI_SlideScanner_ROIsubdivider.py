@@ -21,12 +21,12 @@ from os import listdir, path, mkdir, makedirs
 from ij.gui import Overlay
 import sys
 sys.path.append(path.abspath(path.dirname(__file__)))
-from functions.czi_structure import get_data_structure, get_binning_factor, open_czi_series, \
+from czi_rs_functions.czi_structure import get_data_structure, get_binning_factor, open_czi_series, \
     get_maxres_indexes
-from functions.image_manipulation import extractChannel
-from functions.text_manipulation import get_core_names, get_registered_slices_folder, \
+from czi_rs_functions.image_manipulation import extractChannel
+from czi_rs_functions.text_manipulation import get_core_names, get_registered_slices_folder, \
     get_registered_regions_path
-from functions.roi_and_ov_manipulation import get_corners, overlay_corners, overlay_roi, \
+from czi_rs_functions.roi_and_ov_manipulation import get_corners, overlay_corners, overlay_roi, \
     clean_corners, write_roi_numbers, get_region_from_file
 
 class gui(JFrame):

@@ -12,7 +12,7 @@ from os import path
 import sys
 
 sys.path.append(path.abspath(path.dirname(__file__)))
-from functions.image_manipulation import ARAcoords_of_point
+from czi_rs_functions.image_manipulation import ARAcoords_of_point
 
 
 def get_corners(roi, L):
