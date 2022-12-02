@@ -19,6 +19,11 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
 ]
 
+dependencies = [
+    "numpy",
+    "pandas",
+]
+
 [project.urls]
 homepage = "https://github.com/HernandoMV/czi-roisplitter"
 bug_tracker = "https://github.com/HernandoMV/czi-roisplitter/issues"
