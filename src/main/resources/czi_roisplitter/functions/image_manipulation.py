@@ -12,7 +12,7 @@ from ij.gui import Roi, PolygonRoi
 
 
 def extractChannel(imp, nChannel, nFrame):
-    """ Extract a stack for a specific color channel and time frame """
+    """Extract a stack for a specific color channel and time frame"""
     stack = imp.getImageStack()
     ch = ImageStack(imp.width, imp.height)
     for i in range(1, imp.getNSlices() + 1):
@@ -41,7 +41,7 @@ def apply_mask_to_image(targetImage, maskImage, title, blurval):
     masked_image = Duplicator().run(targetImage)
     masked_image.setTitle(title)
     mask.invert()
-    masked_image = ImageCalculator().run(masked_image, maskImage, 'subtract')
+    masked_image = ImageCalculator().run(masked_image, maskImage, "subtract")
     # blur
     GaussianBlur().blurGaussian(masked_image.getProcessor(), blurval)
     return masked_image
@@ -49,9 +49,9 @@ def apply_mask_to_image(targetImage, maskImage, title, blurval):
 
 def find_threshold(image_title, method):
     IJ.selectWindow(image_title)
-    im = IJ.getImage()  
+    im = IJ.getImage()
     imp = im.getProcessor()
-    imp.setAutoThreshold(method +' dark')
+    imp.setAutoThreshold(method + " dark")
     lower = imp.getMinThreshold()
     upper = max(imp.getPixels())
     return lower, upper
@@ -60,7 +60,7 @@ def find_threshold(image_title, method):
 def ARAcoords_of_point(point, coords, atlas_resolution):
     # order is ap, dv, ml
     reg_coords = []
-    for i in range(1,4):
+    for i in range(1, 4):
         coords.setSlice(i)
         ip = coords.getProcessor()
         coord = ip.getPixelValue(point[0], point[1])
@@ -74,16 +74,23 @@ def ARAcoords_of_point(point, coords, atlas_resolution):
 
 def paint_reg_roi(registered_roi, sample_im, mask_name):
     # create new
-    imp = IJ.createImage("roi_mask_" + mask_name, "8-bit black", sample_im.getWidth(), sample_im.getHeight(), 1)
+    imp = IJ.createImage(
+        "roi_mask_" + mask_name,
+        "8-bit black",
+        sample_im.getWidth(),
+        sample_im.getHeight(),
+        1,
+    )
     ip = imp.getProcessor()
     # paint pixels
     for pixel in registered_roi:
         ip.set(pixel[0], pixel[1], 255)
-    # erode and dilate to clean 
+    # erode and dilate to clean
     IJ.run(imp, "Erode", "")
     IJ.run(imp, "Dilate", "")
 
     return imp
+
 
 def image_to_roi(image):
     xs = []
@@ -91,12 +98,13 @@ def image_to_roi(image):
     imp = image.getProcessor()
     for x in range(imp.getWidth()):
         for y in range(imp.getHeight()):
-            if imp.getPixel(x,y) == 255:
+            if imp.getPixel(x, y) == 255:
                 xs.append(x)
                 ys.append(y)
 
     roi = PolygonRoi(xs, ys, len(xs), Roi.POLYGON)
     return roi
+
 
 def roi_from_mask(mask, coords_im, mask_name):
     # paint the points in a new image to see how well reconstituted it is
@@ -114,7 +122,7 @@ def roi_from_mask(mask, coords_im, mask_name):
     IJ.run("Close")
     roi = rm.getRoi(0)
     rm.close()
-    
+
     return roi
 
 
@@ -125,11 +133,12 @@ def paint_atlas(imp, roi, slice_num):
         imp.setSlice(slice_num)
         ip.set(point.x, point.y, 255)
 
+
 def save_interpolated(im, name):
     imtit = im.getTitle()
     IJ.selectWindow(imtit)
     IJ.run("3D Binary Interpolate", "make")
-    IJ.selectWindow('interpolated')
+    IJ.selectWindow("interpolated")
     imint = IJ.getImage()
     IJ.saveAsTiff(imint, name)
     imint.close()

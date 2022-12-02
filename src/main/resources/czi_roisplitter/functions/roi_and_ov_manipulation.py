@@ -10,6 +10,7 @@ from ij.process import FloatProcessor, ImageConverter
 from ij import ImagePlus, IJ
 from os import path
 import sys
+
 sys.path.append(path.abspath(path.dirname(__file__)))
 from functions.image_manipulation import ARAcoords_of_point
 
@@ -62,7 +63,10 @@ def clean_corners(corners, roi, L):
     corners_cleaned = set()
     for c in corners:
         if c in points:  # if the corner is inside
-            if (c[0] + L, c[1] + L) in points:  # if the opposite corner is inside
+            if (
+                c[0] + L,
+                c[1] + L,
+            ) in points:  # if the opposite corner is inside
                 if (c[0] + L, c[1]) in points:
                     if (c[0], c[1] + L) in points:
                         corners_cleaned.add(c)
@@ -74,7 +78,9 @@ def write_roi_numbers(ov, corners, L):
     fontsize = int(L / 1.5)
     roiID = 1
     for [x, y] in corners:
-        text = TextRoi(x, y, L, L, str(roiID), Font("Arial", Font.BOLD, fontsize))
+        text = TextRoi(
+            x, y, L, L, str(roiID), Font("Arial", Font.BOLD, fontsize)
+        )
         text.setJustification(2)
         text.setColor(Color.RED)
         ov.add(text)
@@ -104,7 +110,7 @@ def get_region_from_file(input_file, region_name, image, scale_factor):
     # clean it
     # create new image
     fp = FloatProcessor(image.getWidth(), image.getHeight())
-    imp = ImagePlus('mask', fp)
+    imp = ImagePlus("mask", fp)
     # draw it
     fp.setRoi(roi)
     fp.fill(roi.getMask())
@@ -147,7 +153,7 @@ def get_ARA_roi(input_file, region_name):
     return reg_roi
 
 
-def roi_to_ARA(roi, coords, atlas_resolution=25., ap_offset=0.):
+def roi_to_ARA(roi, coords, atlas_resolution=25.0, ap_offset=0.0):
     # get ROI xy coordinates
     # roi_polygon = roi.getPolygon()
     # xs = roi_polygon.xpoints
@@ -173,7 +179,6 @@ def roi_to_ARA(roi, coords, atlas_resolution=25., ap_offset=0.):
     ozt = [int(ap_offset * 1000 / atlas_resolution) + z for z in zt]
 
     # start with z as the mean
-    mean_z = int(sum(ozt)/len(ozt))
+    mean_z = int(sum(ozt) / len(ozt))
 
     return reg_filling, mean_z, ozt
-
