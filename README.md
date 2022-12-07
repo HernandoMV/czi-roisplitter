@@ -13,7 +13,8 @@ It depends on functions that are located in the following repo, so make sure you
 
 https://github.com/HernandoMV/czi-rs-functions
 
-Either drag czi_roisplitter.py to Fiji and run it, or add it inside "Fiji.app/plugins" to have it
+Either drag "czi_roisplitter.py" (inside "czi_roisplitter" folder) to Fiji and run it,
+or add it inside "Fiji.app/plugins" to have it
 as a plugin in your Fiji. You can add scripts like this one inside subfolders in "plugins" to have
 your Fiji->Plugins menu better organised:
 
