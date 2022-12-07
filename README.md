@@ -7,6 +7,8 @@ or to load ROIs from the Allen Brain Atlas assuming previous registration of the
 It then splits the big ROIs into smaller images and saves them independently splitting each channel,
 at the resolution desired.
 
+### Installation
+
 It depends on functions that are located in the following repo, so make sure you have them in your Fiji:
 
 https://github.com/HernandoMV/czi-rs-functions
@@ -20,6 +22,11 @@ your Fiji->Plugins menu better organised:
   <img src="doc/imgs/Image.png" width=250>
 </p>
 
+
+### Usage
+
 It is used in larger pipelines like this one TODO: insert here link to PH3 analysis repo 
 
 TODO: insert here picture of the GUI
+
+TODO: write tutorial
