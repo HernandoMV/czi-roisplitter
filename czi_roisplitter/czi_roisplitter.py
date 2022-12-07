@@ -1,12 +1,12 @@
 # Hernando M. Vergara
-# March 2020. Coronavirus quarantine :)
-# CZI_SlideScanner_ROIsubdivider.py takes as input a .czi file from the slide scanner
+# March 2020.
+# czi_roisplitter.py takes as input a .czi file from the Slide Scanner
 # The input files should contain
 # ...
 # It subdivides the drawn ROIs into square rois within that ROI, and saves them independently
 
 # This is optimized for working with the low and high resolution images generated when acquiring
-# with the 40x objective
+# with the 20x objective
 
 
 from loci.plugins.in import ImporterOptions
@@ -19,8 +19,8 @@ from ij import IJ
 from ij.plugin import ContrastEnhancer
 from os import listdir, path, mkdir, makedirs
 from ij.gui import Overlay
-import sys
-sys.path.append(path.abspath(path.dirname(__file__)))
+# import sys
+# sys.path.append(path.abspath(path.dirname(__file__)))
 from czi_rs_functions.czi_structure import get_data_structure, get_binning_factor, open_czi_series, \
     get_maxres_indexes
 from czi_rs_functions.image_manipulation import extractChannel
