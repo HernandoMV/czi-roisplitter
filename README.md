@@ -16,8 +16,8 @@ as a plugin in your Fiji. You can add scripts like this one inside subfolders in
 your Fiji->Plugins menu better organised:
 
 <p align="middle">
-  <img src="doc/imgs/Capture.PNG" width=450>
-  <img src="doc/imgs/Image.png" width=450>
+  <img src="doc/imgs/Capture.PNG" width=350>
+  <img src="doc/imgs/Image.png" width=350>
 </p>
 
 It is used in larger pipelines like this one TODO: insert here link to PH3 analysis repo 
