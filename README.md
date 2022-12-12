@@ -26,8 +26,13 @@ your Fiji->Plugins menu better organised:
 
 ### Usage
 
-It is used in larger pipelines like this one TODO: insert here link to PH3 analysis repo 
+It is used in larger pipelines like this one: https://github.com/HernandoMV/ph3-analysis 
 
-TODO: insert here picture of the GUI
+
+This is how the GUI looks:
+
+<p align="middle">
+  <img src="doc/imgs/GUI.png" width=650>
+</p>
 
 TODO: write tutorial
